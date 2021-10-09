@@ -147,6 +147,7 @@ extraEnvs: []
 ## Metrics is related to Prometheus Operator and its CRD's installed
 ## ref: https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
 ##
+
 metrics:
   enabled: false
   serviceMonitor:
