@@ -1,0 +1,16 @@
+{{- if .Values.podDistruptionBudget.enabled }}
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ template "etcd.fullname" . }}
+  labels: {{- include "etcd.labels" . | nindent 4 }}
+spec:
+  {{- if .Values.podDistruptionBudget.minAvailable }}
+  minAvailable: {{ .Values.podDistruptionBudget.minAvailable }}
+  {{- end }}
+  {{- if .Values.podDistruptionBudget.maxUnavailable }}
+  maxUnavailable: {{ .Values.podDistruptionBudget.maxUnavailable }}
+  {{- end }}
+  selector:
+    matchLabels: {{- include "etcd.selectorLabels" . | nindent 6 }}
+{{- end }}

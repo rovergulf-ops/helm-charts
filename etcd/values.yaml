@@ -1,0 +1,160 @@
+# Default values for etcd.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 3
+revisionHistoryLimit: 5
+
+image:
+  repository: gcr.io/etcd-development/etcd
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v3.5.0"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+auth:
+  peer:
+    enableAuthentication: "true"
+    ## Switch to automatically create the TLS certificates
+    useAutoTLS: ""
+    ## Switch to encrypt peer communication using TLS certificates
+    secureTransport: "true"
+  client:
+    enableAuthentication: true
+    ## Switch to encrypt client communication using TLS certificates
+    secureTransport: true
+  ## Name of the existing secret containing cert files for peer communication.
+  existingSecret: etcd-ssl-certs
+
+etcd:
+  dataDir: "/tmp/data"
+  walDir: ""
+  token: ""
+  logger: zap
+  cluster:
+    state: 'new' # may be 'new' or 'existing'
+  metrics: extensive # options are 'basic' and 'extensive'
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  peerPort: 2380
+  clientPort: 2379
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: etcd.example.com
+      paths:
+        - /
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: metrics
+  initialDelaySeconds: 60
+  periodSeconds: 60
+  timeoutSeconds: 5
+  failureThreshold: 6
+  successThreshold: 1
+
+readinessProbe: {}
+#  httpGet:
+#    path: /health
+#    port: metrics
+#  initialDelaySeconds: 20
+#  periodSeconds: 60
+#  timeoutSeconds: 5
+#  failureThreshold: 6
+#  successThreshold: 1
+
+## etcd metrics
+metrics:
+  enabled: false
+  serviceMonitor:
+    enabled: false
+    namespace: ""
+    interval: "30s"
+    scrapeTimeout: "5s"
+    additionalLabels:
+      release: prometheus
+
+memoryMode: false
+
+persistentVolume:
+  enabled: true
+  storage: "4Gi"
+  ## etcd data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  storageClass: "premium-rwo"
+
+extraEnvs: []
+
+extraVolumes: []
+
+extraVolumeMounts: []
+
+podDistruptionBudget:
+  enabled: false
+#  minAvailable: 1
+#  maxUnavailable: 0
