@@ -1,0 +1,7 @@
+apiVersion: v2
+name: cloud-sql-proxy
+description: A Helm chart for Cloud SQL Proxy
+home: https://github.com/GoogleCloudPlatform/cloudsql-proxy
+type: application
+version: 0.2.0
+appVersion: 1.24.0

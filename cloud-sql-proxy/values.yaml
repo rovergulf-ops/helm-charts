@@ -1,0 +1,154 @@
+# Default values for cloud-sql-proxy.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+deploymentRevisionHistoryLimit: 3
+# gcr.io/cloudsql-docker/gce-proxy:1.20.0
+
+image:
+  repository: eu.gcr.io/cloudsql-docker/gce-proxy
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "1.24.0"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+# cloud-sql-proxy options
+# more details at: https://github.com/GoogleCloudPlatform/cloudsql-proxy#cloud-sql-proxy
+general:
+  verbose: false
+
+  # --instances="project1:region:instance1,project3:region:instance2=tcp:0.0.0.0:25677"
+  instance: ""
+  instances: []
+#    - project: ""
+#      region: ""
+#      database: ""
+#      listenAddr: ""
+#      listenPort: ""
+  # fuse requires access to /dev/fuse as well as the fusermount binary.
+  # An optional -fuse_tmp flag can specify where to place temporary files.
+  # The directory indicated by -dir is mounted.
+  # fuse: /dev/fuse
+
+  ## Note!
+  # -instances and -instances_metadata may be used at the same time but are not compatible with the fuse parameter.
+
+  # instancesMetadata: ""
+  # specify values as string separated by comma:
+
+
+  ipAddresType: "PUBLIC" # or PRIVATE
+
+#  termTimeout: 30s
+
+#  skipFaildInstanceConfig: false
+
+#  logDebug: false
+
+#  credentialFile: ""
+#  token: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 5432
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths: []
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources:
+#  limits:
+#    cpu: 100m
+#    memory: 128Mi
+#  requests:
+#    cpu: 64m
+#    memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 11
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+extraVolumeMounts: []
+
+extraVolumes: []
+
+extraEnvs: []
+
+## Liveness Probe. The block is directly forwarded into the deployment, so you can use whatever livenessProbe configuration you want.
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
+##
+#livenessProbe:
+#  httpGet:
+#    path: /health
+#    port: http
+#  initialDelaySeconds: 30
+#  periodSeconds: 25
+#  timeoutSeconds: 5
+#  failureThreshold: 5
+#  successThreshold: 1
+
+## Readiness Probe. The block is directly forwarded into the deployment, so you can use whatever readinessProbe configuration you want.
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
+##
+#readinessProbe:
+#  httpGet:
+#    path: /health
+#    port: http
+#  initialDelaySeconds: 50
+#  periodSeconds: 35
+#  timeoutSeconds: 5
+#  failureThreshold: 6
+#  successThreshold: 1
+
+## Metrics is related to Prometheus Operator and its CRD's installed
+## ref: https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+##
+metrics:
+  enabled: false
+  serviceMonitor:
+    enabled: false
+    additionalLabels: {}
