@@ -10,7 +10,7 @@
 
 - alertmanager-discord - [Alertmanager to discord](https://github.com/benjojo/alertmanager-discord)
 - cloud-sql-proxy - [Google SQL Proxy](https://github.com/GoogleCloudPlatform/cloudsql-proxy) wrap
-- etcd - not stable until for etcd-operator release, but usable
+- etcd - not stable until etcd-operator release, but usable
 
 ### How to use
 
