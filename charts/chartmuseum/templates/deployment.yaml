@@ -1,0 +1,113 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "chartmuseum.fullname" . }}
+  labels:
+    {{- include "chartmuseum.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: {{ .Values.deploymentRevisionHistoryLimit | default 3 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "chartmuseum.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "chartmuseum.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "chartmuseum.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - --port=8080
+            {{- if eq .Values.storage.type "s3" }}
+            - --storage=amazon
+            - --storage-amazon-bucket={{ .Values.storage.s3.bucket }}
+            - --storage-amazon-prefix={{ .Values.storage.path }}
+            - --storage-amazon-region={{ .Values.storage.s3.region }}
+            {{- end }}
+            {{- if eq .Values.storage.type "do" }}
+            - --storage=amazon
+            - --storage-amazon-region="us-east-1"
+            - --storage-amazon-bucket={{ .Values.storage.do.bucket }}
+            - --storage-amazon-prefix={{ .Values.storage.path }}
+            - --storage-amazon-endpoint={{ .Values.storage.do.endpoint }}
+            {{- end }}
+            {{- if eq .Values.storage.type "gcs" }}
+            - --storage=google
+            - --storage-google-bucket={{ .Values.storage.gcs.bucket }}
+            - --storage-google-prefix={{ .Values.storage.path }}
+            {{- end }}
+            {{- if eq .Values.storage.type "local" }}
+            - --storage=local
+            - --storage-local-rootdir={{ .Values.storage.path }}
+            {{- if .Values.storage.local.depth }}
+            - --depth={{ .Values.storage.local.depth }}
+            {{- end }}
+            {{- end }}
+            {{- if .Values.allowChartVersionOverwrite }}
+            - --allow-overwrite
+            {{- end }}
+            {{- if .Values.basicAuth.enabled }}
+            - --basic-auth-user={{ .Values.basicAuth.basicAuthUser }}
+            - --basic-auth-pass={{ .Values.basicAuth.basicAuthPassword }}
+            {{- end}}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+            {{- if .Values.metrics.enabled }}
+            - name: metrics
+              containerPort: 8080
+              protocol: TCP
+            {{- end }}
+          {{- if .Values.extraEnvs }}
+          env:
+          {{ toYaml .Values.extraEnvs | nindent 12 }}
+          {{- end }}
+          {{- if .Values.readinessProbe}}
+          readinessProbe:
+            {{ toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{ toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- with .Values.extraVolumeMounts}}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with .Values.extraVolumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

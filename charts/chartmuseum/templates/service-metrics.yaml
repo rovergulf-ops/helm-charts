@@ -1,0 +1,18 @@
+{{- if .Values.metrics.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "chartmuseum.fullname" . }}-metrics
+  labels:
+    app.kubernetes.io/component: metrics
+    {{- include "chartmuseum.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: 8088
+      targetPort: http
+      protocol: TCP
+      name: metrics
+  selector:
+    {{- include "chartmuseum.selectorLabels" . | nindent 4 }}
+{{- end}}

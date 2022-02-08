@@ -1,0 +1,17 @@
+apiVersion: v2
+name: chartmuseum
+description: Helm's Chartmseum Chart
+type: application
+version: 0.1.0
+appVersion: "v0.14.0"
+maintainers:
+  - name: Dmitrii Limonov
+    email: d@rovergulf.net
+home: https://chartmuseum.com
+sources:
+  - https://github.com/helm/chartmuseum
+keywords:
+  - helm
+  - chartmuseum
+  - helm-charts
+  - charts

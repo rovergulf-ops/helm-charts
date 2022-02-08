@@ -1,0 +1,164 @@
+# Default values for chartmuseum.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+deploymentRevisionHistoryLimit: 3
+
+
+image:
+  repository: chartmuseum/chartmuseum
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v0.13.1"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+# Configure Chartmuseum storage
+#
+storage:
+  type: ""
+  path: ""
+  s3:
+    bucket: ""
+    region: ""
+    access_key: ""
+    secret_key: ""
+  do: {}
+  gcs:
+    credentials_file: ""
+    bucket: ""
+  local: {}
+#    depth: 2
+
+# basicAuth implements basic auth for Chartmuseum API, except /health
+#
+basicAuth:
+  enabled: false
+  basicAuthUser: ""
+  basicAuthPassword: ""
+
+# allow overwrite current version charts
+allowChartVersionOverwrite: false
+
+
+### Cloud credentials Examples:
+
+## GCS with secret mount
+
+extraVolumeMounts: []
+
+extraVolumes: []
+#
+extraEnvs: []
+
+## AWS or DigitalOcean using secretKeyRef
+
+# extraEnvs:
+#   - name: AWS_ACCESS_KEY_ID
+#     valueFrom:
+#       secretKeyRef:
+#         name: s3-credentials
+#         key: AWS_ACCESS_KEY_ID
+#   - name: AWS_SECRET_ACCESS_KEY
+#     valueFrom:
+#       secretKeyRef:
+#         name: s3-credentials
+#         key: AWS_SECRET_ACCESS_KEY
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: false
+  annotations:
+#    kubernetes.io/ingress.class: nginx
+#    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+#    kubernetes.io/tls-acme: "true"
+  hosts: []
+  tls: []
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 400m
+  #   memory: 2048Mi
+#  requests:
+#    cpu: 100m
+#    memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 11
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+## Liveness Probe. The block is directly forwarded into the deployment, so you can use whatever livenessProbe configuration you want.
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
+##
+livenessProbe:
+  httpGet:
+    path: /health
+    port: http
+  initialDelaySeconds: 25
+  periodSeconds: 300
+#  timeoutSeconds: 5
+#  failureThreshold: 2
+#  successThreshold: 1
+
+## Readiness Probe. The block is directly forwarded into the deployment, so you can use whatever readinessProbe configuration you want.
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
+##
+readinessProbe:
+  httpGet:
+    path: /health
+    port: http
+  initialDelaySeconds: 15
+  periodSeconds: 35
+#  timeoutSeconds: 5
+#  failureThreshold: 6
+#  successThreshold: 1
+
+metrics:
+  enabled: false
+  serviceMonitor:
+    enabled: false
+    namespace: ""
+    interval: "30s"
+    scrapeTimeout: "5s"
+    additionalLabels: {}

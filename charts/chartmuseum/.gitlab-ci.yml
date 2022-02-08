@@ -1,0 +1,8 @@
+.chartmuseum-refs:
+  variables:
+    CHART_DIR: charts/devops/chartmuseum
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      changes:
+        - $CHART_DIR/*
+#        - charts/devops/chartmuseum/Chart.yaml
