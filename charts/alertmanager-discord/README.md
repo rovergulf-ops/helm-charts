@@ -8,6 +8,6 @@ Check [how to add Rovergulf Operations Helm repositories](../../README.md)
 ```shell
 helm update -i \
   $RELEASE_NAME rovergulf-ops/alertmanager-discord
-  -n $RELEASE_NAMESPACE
+  -n monitoring
   -f values.yaml
 ```
