@@ -1,8 +1,0 @@
-remote: origin
-target-branch: main
-chart-dirs:
-  - charts
-helm-extra-args: --timeout 600s
-excluded-charts:
-  # If not running on GCE, will error: "Failed to get GCE config"
-  - cloud-sql-proxy
