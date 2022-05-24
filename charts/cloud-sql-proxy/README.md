@@ -7,7 +7,7 @@ Check [how to add Rovergulf Operations Helm repositories](../../README.md)
 
 ```shell
 helm update -i \
-  $RELEASE_NAME rovergulf-ops/cloud-sql-proxy
-  -n $RELEASE_NAMESPACE
+  cloud-sql-proxy rovergulf-ops/cloud-sql-proxy \
+  -n $RELEASE_NAMESPACE \
   -f values.yaml
 ```

@@ -7,7 +7,6 @@ Check [how to add Rovergulf Operations Helm repositories](../../README.md)
 
 ```shell
 helm update -i \
-  $RELEASE_NAME rovergulf-ops/etcd
-  -n $RELEASE_NAMESPACE
-  -f values.yaml
+  etcd rovergulf-ops/etcd \
+  -n etcd -f values.yaml
 ```

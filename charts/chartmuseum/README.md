@@ -7,7 +7,7 @@ Check [how to add Rovergulf Operations Helm repositories](../../README.md)
 
 ```shell
 helm update -i \
-  $RELEASE_NAME rovergulf-ops/chartmuseum
-  -n $RELEASE_NAMESPACE
+  chartmuseum rovergulf-ops/chartmuseum
+  -n chartmuseum \
   -f values.yaml
 ```
