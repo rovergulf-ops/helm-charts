@@ -2,7 +2,7 @@
 remote: origin
 target-branch: main
 chart-dirs:
-  - charts
+  - charts/etcd
 chart-repos:
   - rovergulf-ops=https://rovergulf-ops.github.io/helm-charts/
 
