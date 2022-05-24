@@ -40,8 +40,8 @@ general:
   # instancesMetadata: ""
   # specify values as string separated by comma:
 
-
-  ipAddresType: "PUBLIC" # or PRIVATE
+  # can be 'PUBLIC' or 'PRIVATE'
+  ipAddresType: "PUBLIC"
 
 #  termTimeout: 30s
 
@@ -120,8 +120,8 @@ extraEnvs: []
 
 ## Liveness Probe. The block is directly forwarded into the deployment, so you can use whatever livenessProbe configuration you want.
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
-##
-#livenessProbe:
+
+# livenessProbe:
 #  httpGet:
 #    path: /health
 #    port: http
@@ -134,7 +134,7 @@ extraEnvs: []
 ## Readiness Probe. The block is directly forwarded into the deployment, so you can use whatever readinessProbe configuration you want.
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 ##
-#readinessProbe:
+# readinessProbe:
 #  httpGet:
 #    path: /health
 #    port: http

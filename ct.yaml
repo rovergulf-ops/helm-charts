@@ -1,0 +1,17 @@
+# See https://github.com/helm/chart-testing#configuration
+remote: origin
+target-branch: main
+
+chart-dirs:
+  - charts
+
+#excluded-charts:
+  # If not running on GCE, will error with credentials
+#  - cloud-sql-proxy
+
+chart-repos:
+  - rovergulf-ops=https://rovergulf-ops.github.io/helm-charts/
+#  - rovergulf=http://???.rovergulf.net/
+
+# revert after 4 minutes of failures
+helm-extra-args: --timeout 240s --atomic

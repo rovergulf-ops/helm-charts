@@ -9,7 +9,7 @@ image:
   repository: gcr.io/etcd-development/etcd
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v3.5.0"
+  tag: "v3.5.4"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -35,8 +35,10 @@ etcd:
   token: ""
   logger: zap
   cluster:
-    state: 'new' # may be 'new' or 'existing'
-  metrics: extensive # options are 'basic' and 'extensive'
+    # may be 'new' or 'existing'
+    state: "new"
+  # options are 'basic' and 'extensive'
+  metrics: extensive
 
 serviceAccount:
   # Specifies whether a service account should be created

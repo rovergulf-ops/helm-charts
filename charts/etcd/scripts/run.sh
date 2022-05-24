@@ -17,13 +17,13 @@ member_hash() {
 }
 # we should wait for other pods to be up before trying to join
 # otherwise we got "no such host" errors when trying to resolve other members
-#for i in $(seq 0 $((${INITIAL_CLUSTER_SIZE} - 1))); do
-#    while true; do
-#        echo "Waiting for ${SET_NAME}-${i}.${SET_NAME} to come up"
-#        ping -W 1 -c 1 ${SET_NAME}-${i}.${SET_NAME} > /dev/null && break
-#        sleep 1s
-#    done
-#done
+for i in $(seq 0 $((${INITIAL_CLUSTER_SIZE} - 1))); do
+    while true; do
+        echo "Waiting for ${SET_NAME}-${i}.${SET_NAME} to come up"
+        ping -W 5 -c 1 ${SET_NAME}-${i}.${SET_NAME} > /dev/null && break
+        sleep 1s
+    done
+done
 
 # re-joining after failure?
 if [ -e /var/run/etcd/default.etcd && -e /var/run/etcd/member_id ]; then
