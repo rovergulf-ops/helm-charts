@@ -1,0 +1,10 @@
+# See https://github.com/helm/chart-testing#configuration
+remote: origin
+target-branch: main
+chart-dirs:
+  - charts
+chart-repos:
+  - rovergulf-ops=https://rovergulf-ops.github.io/helm-charts/
+
+# revert after 4 minutes of failures
+helm-extra-args: --timeout 240s --atomic
