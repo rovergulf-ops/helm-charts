@@ -3,5 +3,15 @@ name: cloud-sql-proxy
 description: A Helm chart for Cloud SQL Proxy
 home: https://github.com/GoogleCloudPlatform/cloudsql-proxy
 type: application
-version: 0.3.0
+version: 0.3.1
 appVersion: 1.28.0
+maintainers:
+  - name: scDisorder
+    email: d@rovergulf.net
+keywords:
+  - helm
+  - cloud-sql-proxy
+  - google-sql-proxy
+  - gcp-sql-proxy
+  - helm-charts
+  - charts
