@@ -2,8 +2,8 @@ apiVersion: v2
 name: etcd
 description: ETCD distributed storage
 type: application
-version: 0.4.0
-appVersion: 3.5.0
+version: 0.4.1
+appVersion: 3.5.4
 maintainers:
   - name: Dmitrii Limonov
     email: d@rovergulf.net
