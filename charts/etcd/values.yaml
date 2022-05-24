@@ -9,7 +9,7 @@ image:
   repository: gcr.io/etcd-development/etcd
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v3.5.4"
+  # tag: "v3.5.4"
 
 imagePullSecrets: []
 nameOverride: ""
