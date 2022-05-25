@@ -2,8 +2,8 @@ apiVersion: v2
 name: busybox
 description: Busybox Debug HTTP Server
 type: application
-version: 0.1.0
-appVersion: "0.1.0"
+version: 0.0.3
+appVersion: "0.0.3"
 maintainers:
   - name: scDisorder
     email: d@rovergulf.net
