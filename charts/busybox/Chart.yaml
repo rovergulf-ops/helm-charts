@@ -1,0 +1,16 @@
+apiVersion: v2
+name: busybox
+description: Busybox Debug HTTP Server
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+maintainers:
+  - name: scDisorder
+    email: d@rovergulf.net
+sources:
+  - https://github.com/rovergulf/busybox
+keywords:
+  - helm
+  - busybox
+  - helm-charts
+  - charts

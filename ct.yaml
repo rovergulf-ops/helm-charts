@@ -6,7 +6,7 @@ chart-dirs:
   - charts
 
 #excluded-charts:
-  # If not running on GCE, will error with credentials
+#  # If not running on GCE, will error with credentials
 #  - cloud-sql-proxy
 
 chart-repos:
