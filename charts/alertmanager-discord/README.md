@@ -8,7 +8,7 @@ Check [how to add Rovergulf Operations Helm repositories](../../README.md)
 Application requires `DISCORD_WEBHOOK` environment url to be set
 
 ```shell
-helm update -i \
+helm upgrade -i \
   alertmanager-discord rovergulf-ops/alertmanager-discord \
   -n monitoring \
   -f values.yaml
