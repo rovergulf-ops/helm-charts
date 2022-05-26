@@ -3,6 +3,25 @@ entries:
   alertmanager-discord:
   - apiVersion: v2
     appVersion: latest
+    created: "2022-05-24T23:40:38.437884293Z"
+    description: Alertmanager to Discord webhook handler
+    digest: 31bfc7f98bc9142091f0c4d0ed629d2c2e9abf91a98e0dde84d07a1617b3d34c
+    home: https://github.com/benjojo/alertmanager-discord
+    keywords:
+    - helm
+    - alertmanager-discord
+    - helm-charts
+    - charts
+    maintainers:
+    - email: d@rovergulf.net
+      name: scDisorder
+    name: alertmanager-discord
+    type: application
+    urls:
+    - https://github.com/rovergulf-ops/helm-charts/releases/download/alertmanager-discord-0.1.1/alertmanager-discord-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: latest
     created: "2022-01-09T13:50:27.628126974Z"
     description: A Helm chart for Kubernetes
     digest: e04742f836a5c446136b362f331b0c55ecf6d39928b4f53c083ca5f5ef054ace
@@ -12,7 +31,71 @@ entries:
     urls:
     - https://github.com/rovergulf-ops/helm-charts/releases/download/alertmanager-discord-0.1.0/alertmanager-discord-0.1.0.tgz
     version: 0.1.0
+  busybox:
+  - apiVersion: v2
+    appVersion: 0.0.3
+    created: "2022-05-26T08:40:39.432486417Z"
+    description: Busybox Debug HTTP Server
+    digest: ebddb80ee12711b2fab5e307b3088917cae598bf8993dad42947701efe54930e
+    keywords:
+    - helm
+    - busybox
+    - helm-charts
+    - charts
+    maintainers:
+    - email: d@rovergulf.net
+      name: scDisorder
+    name: busybox
+    sources:
+    - https://github.com/rovergulf/busybox
+    type: application
+    urls:
+    - https://github.com/rovergulf-ops/helm-charts/releases/download/busybox-0.0.3/busybox-0.0.3.tgz
+    version: 0.0.3
+  chartmuseum:
+  - apiVersion: v2
+    appVersion: v0.14.0
+    created: "2022-05-24T23:40:38.54523846Z"
+    description: Helm's Chartmseum Chart
+    digest: 5e343200f6adeef0201796540077d023b148626c090dfef2d495d5bccc59e3ec
+    home: https://chartmuseum.com
+    keywords:
+    - helm
+    - chartmuseum
+    - helm-charts
+    - charts
+    maintainers:
+    - email: d@rovergulf.net
+      name: scDisorder
+    name: chartmuseum
+    sources:
+    - https://github.com/helm/chartmuseum
+    type: application
+    urls:
+    - https://github.com/rovergulf-ops/helm-charts/releases/download/chartmuseum-0.1.1/chartmuseum-0.1.1.tgz
+    version: 0.1.1
   cloud-sql-proxy:
+  - apiVersion: v2
+    appVersion: 1.28.0
+    created: "2022-05-24T23:40:38.656492631Z"
+    description: A Helm chart for Cloud SQL Proxy
+    digest: a64e1f223c5565e44b8ac0acb3db69669f9cad00d61a1731dd8cb77013d2868e
+    home: https://github.com/GoogleCloudPlatform/cloudsql-proxy
+    keywords:
+    - helm
+    - cloud-sql-proxy
+    - google-sql-proxy
+    - gcp-sql-proxy
+    - helm-charts
+    - charts
+    maintainers:
+    - email: d@rovergulf.net
+      name: scDisorder
+    name: cloud-sql-proxy
+    type: application
+    urls:
+    - https://github.com/rovergulf-ops/helm-charts/releases/download/cloud-sql-proxy-0.3.1/cloud-sql-proxy-0.3.1.tgz
+    version: 0.3.1
   - apiVersion: v2
     appVersion: 1.28.0
     created: "2022-01-09T13:50:27.810080522Z"
@@ -25,6 +108,44 @@ entries:
     - https://github.com/rovergulf-ops/helm-charts/releases/download/cloud-sql-proxy-0.3.0/cloud-sql-proxy-0.3.0.tgz
     version: 0.3.0
   etcd:
+  - apiVersion: v2
+    appVersion: 3.5.4
+    created: "2022-05-26T08:40:39.889053652Z"
+    description: ETCD distributed storage
+    digest: 46e68efc808b2e6334fb7b6b46388effb7d119d3120d61c1ee2c951f952b49a0
+    keywords:
+    - etcd
+    - storage
+    - internal
+    maintainers:
+    - email: d@rovergulf.net
+      name: scDisorder
+    name: etcd
+    sources:
+    - https://github.com/etcd-io/etcd
+    type: application
+    urls:
+    - https://github.com/rovergulf-ops/helm-charts/releases/download/etcd-0.5.0/etcd-0.5.0.tgz
+    version: 0.5.0
+  - apiVersion: v2
+    appVersion: 3.5.4
+    created: "2022-05-24T23:40:38.786694013Z"
+    description: ETCD distributed storage
+    digest: d6f59b3c535ae9bb7a2c4b98719f0ad7ddcea4972154cfb96878378350901932
+    keywords:
+    - etcd
+    - storage
+    - internal
+    maintainers:
+    - email: d@rovergulf.net
+      name: scDisorder
+    name: etcd
+    sources:
+    - https://github.com/etcd-io/etcd
+    type: application
+    urls:
+    - https://github.com/rovergulf-ops/helm-charts/releases/download/etcd-0.4.1/etcd-0.4.1.tgz
+    version: 0.4.1
   - apiVersion: v2
     appVersion: 3.5.0
     created: "2022-01-09T13:50:27.99010363Z"
@@ -45,4 +166,4 @@ entries:
     urls:
     - https://github.com/rovergulf-ops/helm-charts/releases/download/etcd-0.4.0/etcd-0.4.0.tgz
     version: 0.4.0
-generated: "2022-01-09T13:50:27.990109031Z"
+generated: "2022-05-26T08:40:39.889073652Z"
