@@ -31,6 +31,27 @@ entries:
     urls:
     - https://github.com/rovergulf-ops/helm-charts/releases/download/alertmanager-discord-0.1.0/alertmanager-discord-0.1.0.tgz
     version: 0.1.0
+  busybox:
+  - apiVersion: v2
+    appVersion: 0.0.3
+    created: "2022-05-26T08:40:39.432486417Z"
+    description: Busybox Debug HTTP Server
+    digest: ebddb80ee12711b2fab5e307b3088917cae598bf8993dad42947701efe54930e
+    keywords:
+    - helm
+    - busybox
+    - helm-charts
+    - charts
+    maintainers:
+    - email: d@rovergulf.net
+      name: scDisorder
+    name: busybox
+    sources:
+    - https://github.com/rovergulf/busybox
+    type: application
+    urls:
+    - https://github.com/rovergulf-ops/helm-charts/releases/download/busybox-0.0.3/busybox-0.0.3.tgz
+    version: 0.0.3
   chartmuseum:
   - apiVersion: v2
     appVersion: v0.14.0
@@ -89,6 +110,25 @@ entries:
   etcd:
   - apiVersion: v2
     appVersion: 3.5.4
+    created: "2022-05-26T08:40:39.889053652Z"
+    description: ETCD distributed storage
+    digest: 46e68efc808b2e6334fb7b6b46388effb7d119d3120d61c1ee2c951f952b49a0
+    keywords:
+    - etcd
+    - storage
+    - internal
+    maintainers:
+    - email: d@rovergulf.net
+      name: scDisorder
+    name: etcd
+    sources:
+    - https://github.com/etcd-io/etcd
+    type: application
+    urls:
+    - https://github.com/rovergulf-ops/helm-charts/releases/download/etcd-0.5.0/etcd-0.5.0.tgz
+    version: 0.5.0
+  - apiVersion: v2
+    appVersion: 3.5.4
     created: "2022-05-24T23:40:38.786694013Z"
     description: ETCD distributed storage
     digest: d6f59b3c535ae9bb7a2c4b98719f0ad7ddcea4972154cfb96878378350901932
@@ -126,4 +166,4 @@ entries:
     urls:
     - https://github.com/rovergulf-ops/helm-charts/releases/download/etcd-0.4.0/etcd-0.4.0.tgz
     version: 0.4.0
-generated: "2022-05-24T23:40:38.786868913Z"
+generated: "2022-05-26T08:40:39.889073652Z"
