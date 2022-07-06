@@ -74,6 +74,27 @@ entries:
     version: 0.0.3
   chartmuseum:
   - apiVersion: v2
+    appVersion: v0.15.0
+    created: "2022-07-06T10:12:40.972743097Z"
+    description: Helm's Chartmseum Chart
+    digest: 6a4960f0580188e04ece887c3bf109f6a056cd754af90459d9ea9bebb6033a61
+    home: https://chartmuseum.com
+    keywords:
+    - helm
+    - chartmuseum
+    - helm-charts
+    - charts
+    maintainers:
+    - email: d@rovergulf.net
+      name: scDisorder
+    name: chartmuseum
+    sources:
+    - https://github.com/helm/chartmuseum
+    type: application
+    urls:
+    - https://github.com/rovergulf-ops/helm-charts/releases/download/chartmuseum-0.2.0/chartmuseum-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     appVersion: v0.14.0
     created: "2022-05-24T23:40:38.54523846Z"
     description: Helm's Chartmseum Chart
@@ -186,4 +207,4 @@ entries:
     urls:
     - https://github.com/rovergulf-ops/helm-charts/releases/download/etcd-0.4.0/etcd-0.4.0.tgz
     version: 0.4.0
-generated: "2022-06-14T09:29:40.031019276Z"
+generated: "2022-07-06T10:12:40.972772397Z"
