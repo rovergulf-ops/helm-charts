@@ -68,6 +68,9 @@ spec:
             - --basic-auth-user={{ .Values.basicAuth.basicAuthUser }}
             - --basic-auth-pass={{ .Values.basicAuth.basicAuthPassword }}
             {{- end}}
+            {{- if .Values.metrics.enabled }}
+            - --enable-metrics=true
+            {{- end}}
           ports:
             - name: http
               containerPort: 8080

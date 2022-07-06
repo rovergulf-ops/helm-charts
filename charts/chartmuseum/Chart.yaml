@@ -2,8 +2,8 @@ apiVersion: v2
 name: chartmuseum
 description: Helm's Chartmseum Chart
 type: application
-version: 0.1.1
-appVersion: "v0.14.0"
+version: 0.2.0
+appVersion: "v0.15.0"
 maintainers:
   - name: scDisorder
     email: d@rovergulf.net
