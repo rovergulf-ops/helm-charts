@@ -33,6 +33,26 @@ entries:
     version: 0.1.0
   busybox:
   - apiVersion: v2
+    appVersion: v0.3.0
+    created: "2022-11-07T04:53:25.675801457Z"
+    description: Busybox Debug HTTP Server
+    digest: 59476d5c88753a0cc4ecce5b6edabacec91cffa80b7210eaf26521a749c00d03
+    keywords:
+    - helm
+    - busybox
+    - helm-charts
+    - charts
+    maintainers:
+    - email: d@rovergulf.net
+      name: scDisorder
+    name: busybox
+    sources:
+    - https://github.com/rovergulf/busybox
+    type: application
+    urls:
+    - https://github.com/rovergulf-ops/helm-charts/releases/download/busybox-0.3.0/busybox-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     appVersion: v0.2.0
     created: "2022-07-11T23:07:11.445548575Z"
     description: Busybox Debug HTTP Server
@@ -227,4 +247,4 @@ entries:
     urls:
     - https://github.com/rovergulf-ops/helm-charts/releases/download/etcd-0.4.0/etcd-0.4.0.tgz
     version: 0.4.0
-generated: "2022-07-11T23:07:11.44558218Z"
+generated: "2022-11-07T04:53:25.675821357Z"
