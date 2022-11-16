@@ -17,15 +17,15 @@ fullnameOverride: ""
 
 auth:
   peer:
-    enableAuthentication: "true"
+    enableAuthentication: false
     ## Switch to automatically create the TLS certificates
     useAutoTLS: ""
     ## Switch to encrypt peer communication using TLS certificates
     secureTransport: "true"
   client:
-    enableAuthentication: true
+    enableAuthentication: false
     ## Switch to encrypt client communication using TLS certificates
-    secureTransport: true
+    secureTransport: false
   ## Name of the existing secret containing cert files for peer communication.
   existingSecret: etcd-ssl-certs
 
