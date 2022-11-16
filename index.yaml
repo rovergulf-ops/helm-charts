@@ -191,6 +191,25 @@ entries:
   etcd:
   - apiVersion: v2
     appVersion: 3.5.5
+    created: "2022-11-16T05:15:17.774399559Z"
+    description: ETCD distributed storage
+    digest: 8103ce667859aeaa0a6c0054aff809d892d81cc50acb8280a4dde12dfc2e8337
+    keywords:
+    - etcd
+    - storage
+    - internal
+    maintainers:
+    - email: d@rovergulf.net
+      name: scDisorder
+    name: etcd
+    sources:
+    - https://github.com/etcd-io/etcd
+    type: application
+    urls:
+    - https://github.com/rovergulf-ops/helm-charts/releases/download/etcd-0.6.1/etcd-0.6.1.tgz
+    version: 0.6.1
+  - apiVersion: v2
+    appVersion: 3.5.5
     created: "2022-11-16T04:50:59.92903211Z"
     description: ETCD distributed storage
     digest: fb47fa2b89aca65674778c2402a0adb06fe420eff331d1bd5784258769ddaa6f
@@ -266,4 +285,4 @@ entries:
     urls:
     - https://github.com/rovergulf-ops/helm-charts/releases/download/etcd-0.4.0/etcd-0.4.0.tgz
     version: 0.4.0
-generated: "2022-11-16T04:50:59.92905891Z"
+generated: "2022-11-16T05:15:17.77447166Z"
